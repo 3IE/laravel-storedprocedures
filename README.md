@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/mrblackus/laravel-storedprocedures.svg?branch=master)](https://travis-ci.org/mrblackus/laravel-storedprocedures)
+[![Build Status](https://travis-ci.org/3ie/laravel-storedprocedures.svg?branch=master)](https://travis-ci.org/3ie/laravel-storedprocedures)
 # Laravel stored procedures
-This package allow you to work with PostgreSQL stored procedures with Laravel 4. It allows you to generate models to simply use your procedures in your PHP code.
+This package allow you to work with PostgreSQL stored procedures with Laravel 5. It allows you to generate models to simply use your procedures in your PHP code.
 
 ## Installation
 
@@ -8,7 +8,7 @@ This package allow you to work with PostgreSQL stored procedures with Laravel 4.
 #### With Composer
 Require this package by adding following dependency on your composer.json
 ```javascript
-"mrblackus/laravel-storedprocedures": "0.1.*"
+"3ie/laravel-storedprocedures": "0.1.*"
 ```
 Then update composer with `composer update` or `composer install`.
 
@@ -34,16 +34,16 @@ php artisan generate-sp
 Models will be written in app/store_procedures directory (or the one defined in configuration file). **Do not edit these models !** They will be overwritten at next generation.
 
 ## Configuration
-You can override default configuration by publishing configuration file and editing it.
+You have to run the vendor:publish method to copy the configuration file into you app directory
 ```
-php artisan config:publish mrblackus/laravel-storedprocedures
+php artisan vendor:publish
 ```
-You can change the database schema to read and the directory where models for stored procedures are written.
-
+You can change the database schema to read and the directory where models for stored procedures are written. You can also modify the namespace used for your sp_models
 ```php
 return array(
-    'schema'         => 'public',
-    'model_save_dir' => 'stored_procedures/'
+    'schema'         	=> 'public',
+    'model_save_dir' 	=> 'stored_procedures/',
+	'model_namespace'   => 'App'
 );
 ```
 

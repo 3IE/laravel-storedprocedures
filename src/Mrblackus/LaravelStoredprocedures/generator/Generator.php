@@ -25,16 +25,21 @@ class Generator
     /** @var string */
     private $modelSaveDir;
 
+    /** @var string */
+    private $modelNamespace;
+
     /**
      * @param \PDO   $pdo
      * @param string $sSchema
      * @param string $sSaveDir
+     * @param string $sNamespace
      */
-    public function __construct(\PDO $pdo, $sSchema, $sSaveDir)
+    public function __construct(\PDO $pdo, $sSchema, $sSaveDir, $sNamespace)
     {
-        $this->pdo          = $pdo;
-        $this->schema       = $sSchema;
-        $this->modelSaveDir = $sSaveDir;
+        $this->pdo              = $pdo;
+        $this->schema           = $sSchema;
+        $this->modelSaveDir     = $sSaveDir;
+        $this->modelNamespace   = $sNamespace;
 
         $twig_options = array(
             'cache'            => false,
@@ -160,6 +165,7 @@ class Generator
     {
         $variables = array();
 
+        $variables['namespace']  = $this->modelNamespace;
         $variables['className']  = $sp->getClassName();
         $variables['name']       = $sp->getName();
         $variables['returnType'] = $sp->getCleanReturnType();

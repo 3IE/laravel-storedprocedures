@@ -1,5 +1,5 @@
 {
-    "name": "mrblackus/laravel-storedprocedures",
+    "name": "3ie/laravel-storedprocedures",
     "description": "",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.x",
+        "illuminate/support": "5.x",
         "twig/twig": ">=1.6"
     },
     "autoload": {

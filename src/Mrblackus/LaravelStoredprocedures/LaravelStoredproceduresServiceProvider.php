@@ -20,7 +20,9 @@ class LaravelStoredproceduresServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('mrblackus/laravel-storedprocedures');
+        $this->publishes([
+            __DIR__ . "/../../config/config.php" => config_path("laravel-storedprocedures.php")
+        ]);
 	}
 
 	/**

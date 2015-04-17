@@ -40,13 +40,14 @@ class GenerateSpCommand extends Command
     {
         $this->info('Reading stored procedures from database...');
 
-        $schema     = \Config::get('laravel-storedprocedures::schema');
-        $model_path = app_path(\Config::get('laravel-storedprocedures::model_save_dir'));
+        $schema     = \Config::get('laravel-storedprocedures.schema');
+        $model_path = app_path(\Config::get('laravel-storedprocedures.model_save_dir'));
+        $model_namespace = \Config::get('laravel-storedprocedures.model_namespace');
 
         if (!file_exists($model_path))
             mkdir($model_path);
 
-        $generator = new Generator(\DB::connection()->getPdo(), $schema, $model_path);
+        $generator = new Generator(\DB::connection()->getPdo(), $schema, $model_path, $model_namespace);
         $nbSp      = $generator->run();
 
         $this->info($nbSp . ' SP model' . ($nbSp > 1 ? 's' : '') . ' generated !');
